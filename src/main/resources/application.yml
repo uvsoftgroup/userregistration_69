@@ -1,0 +1,32 @@
+springdoc:
+  swagger-ui:
+    enabled: true
+application:
+  description: User Registration REST APIs for Online registration
+  version: 1.2.7
+server:
+  #address: ${APP_SERVER_ADDRESS:localhost}
+  #port: 4040
+  #context-path: /userregistration
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    hikari:
+      initialization-fail-timeout: 0
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+    enable: true
+  jpa: 
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
